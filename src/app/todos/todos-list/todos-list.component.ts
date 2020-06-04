@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Todo, TodosService } from 'src/app/services/todos.service';
 import { tap } from 'rxjs/operators';
-import { faCheckSquare } from '@fortawesome/free-solid-svg-icons';
-import { faSquare } from '@fortawesome/free-regular-svg-icons';
 
 @Component({
   selector: 'app-todos-list',
@@ -12,8 +10,6 @@ import { faSquare } from '@fortawesome/free-regular-svg-icons';
 })
 export class TodosListComponent implements OnInit {
   todos$: Observable<Todo[]> = null;
-  checkedIcon = faCheckSquare;
-  nonCheckedIcon = faSquare;
 
   constructor(private todosService: TodosService) {}
 
@@ -21,9 +17,5 @@ export class TodosListComponent implements OnInit {
     this.todos$ = this.todosService.todos.pipe(
       tap((todos) => console.log(todos))
     );
-  }
-
-  toggleTodoStatus(todo: Todo) {
-    this.todosService.toggleTodoStatus(todo);
   }
 }
